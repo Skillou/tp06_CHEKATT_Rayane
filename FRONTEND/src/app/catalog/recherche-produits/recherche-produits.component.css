@@ -1,0 +1,231 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+body, button, input {
+  font: 1em Hind, sans-serif;
+  line-height: 1.5em;
+}
+body, input {
+  color: #171717;
+}
+body, .search-bar {
+  display: flex;
+}
+body {
+  background: #757575;
+  height: 100vh;
+}
+.search-bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+  transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+  width: 3em;
+  height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+  cursor: pointer;
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+  width: 100%;
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+  outline: transparent;
+}
+.search-bar {
+  margin: auto;
+  padding: 1.5em;
+  justify-content: center;
+  max-width: 30em;
+}
+.search-bar input {
+  background: transparent;
+  border-radius: 1.5em;
+  box-shadow: 0 0 0 0.4em #171717 inset;
+  padding: 0.75em;
+  transform: translate(0.5em,0.5em) scale(0.5);
+  transform-origin: 100% 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+  background: #fff;
+  border-radius: 0.375em 0 0 0.375em;
+  box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+  transform: scale(1);
+}
+.search-btn {
+  background: #171717;
+  border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+  padding: 0.75em;
+  position: relative;
+  transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+  transform-origin: 0 50%;
+}
+.search-btn:before,
+.search-btn:after {
+  content: "";
+  display: block;
+  opacity: 0;
+  position: absolute;
+}
+.search-btn:before {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.2em #757575 inset;
+  top: 0.75em;
+  left: 0.75em;
+  width: 1.2em;
+  height: 1.2em;
+}
+.search-btn:after {
+  background: #757575;
+  border-radius: 0 0.25em 0.25em 0;
+  top: 51%;
+  left: 51%;
+  width: 0.75em;
+  height: 0.25em;
+  transform: translate(0.2em,0) rotate(45deg);
+  transform-origin: 0 50%;
+}
+.search-btn span {
+  display: inline-block;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+  background: #c5ffd2;
+  border-radius: 0 1em 1em 0;
+  transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before,
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before,
+.search-bar input:valid + .search-btn:after {
+  opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+  background: #a3bdff;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+  transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  body, input {
+    color: #757575;
+  }
+  body {
+    background: #171717;
+  }
+  .search-bar input {
+    box-shadow: 0 0 0 0.4em #757575 inset;
+  }
+  .search-bar input:focus,
+  .search-bar input:valid {
+    background: #EEEEEE;
+    box-shadow: 0 0 0 0.1em #3d3d3d inset;
+  }
+  .search-btn {
+    background: #757575;
+  }
+}
+
+.category_filter{
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+
+.badge__container {
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+  /*border: solid;*/
+}
+
+.badge {
+  position: relative;
+  width: 60px;
+  height: 25px;
+  padding-bottom: 3px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+  transition: font-weight 200ms ease-in-out;
+}
+
+.badge,
+.badge * {
+  cursor: pointer;
+}
+
+.badge input {
+  display: none;
+}
+
+.badge:hover {
+  font-weight: bold;
+}
+
+.badge:has(input:checked)::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid;
+  border-radius: 34px;
+  pointer-events: none;
+}
+
+.badge--livre {
+  background-color: #ddd6ff;
+  color: #795eff;
+}
+
+.badge--livre:has(input:checked)::before {
+  border-color: #795eff;
+}
+
+.badge--manga {
+  background-color: #d6fff4;
+  color: #2a7362;
+}
+.badge--manga:has(input:checked)::before {
+  border-color: #2a7362;
+}
+
+.badge--jeu {
+  background-color: #d6ffe0;
+  color: #548a34;
+}
+.badge--jeu:has(input:checked)::before {
+  border-color: #548a34;
+}

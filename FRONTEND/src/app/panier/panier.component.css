@@ -1,0 +1,36 @@
+.card-empty {
+  margin-top: 10%;
+}
+
+.card-empty img {
+  max-width: 1920px;
+  max-height: 1080px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box{
+  height: 90px;
+  line-height: 50px;
+  text-align: center;
+}
+.container {
+  margin-bottom: 5em;
+}
+
+img {
+  max-width: 30em;
+  max-height: 30em;
+}
+
+.card {
+  float: none;
+  margin: 0 auto 10px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

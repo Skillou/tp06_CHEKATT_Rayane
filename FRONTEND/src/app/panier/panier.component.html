@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Panier :</h2>
+
+  <!--  Panier vide : -->
+
+  <div *ngIf="!(produits$ | async)?.length">
+    <div class="card-empty position-relative">
+      <img src="https://mykit.in/public/img/images/emptycart.svg" alt="panierVide">
+      <div class="box">
+        <h4>Le panier est vide</h4>
+        <p>Ajouter des produits dans votre panier</p>
+        <button class="btn btn-dark" [routerLink]="['/catalogue']">Continuer le shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!--  Panier rempli : -->
+
+<div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-12" *ngFor="let produit of produits$ | async; index as i">
+        <ng-container *ngIf="produit.produit as produitPanier">
+          <div class="card" style="width: 20rem;">
+            <img [src]='produitPanier.image' class="rounded center-block" [alt]='produitPanier.image'>
+          <div>
+            <div class="card-footer text-muted text-sm-center">{{produitPanier.description}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{produitPanier.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{produitPanier.category}}
+                <br>
+                <strong> Prix :</strong> {{produitPanier.price}} €
+                <br>
+                <strong> Quantité :</strong> {{produit.quantity}}
+              </h6>
+              <button class="btn btn-danger center-block" (click)="removeProduct(i)">Retirer du panier</button>
+            </div>
+          </div>
+        </div>
+      </ng-container> <!-- faudrait juste trouver un autre nom à si tu veux oui-->
+      </div>
+    </div>
+  </div>
+</div>

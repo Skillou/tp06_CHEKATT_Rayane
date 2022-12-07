@@ -1,0 +1,19 @@
+<!--  Recherche -->
+<form [formGroup]="searchGroup">
+  <div class="input-group">
+    <div class="search-bar">
+      <input formControlName="search" type="search" name="search" pattern=".*\S.*" required>
+      <button class="search-btn" type="submit">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <form formGroupName="category" class="badge__container">
+    <!--  Badge -->
+    <div [class]="'badge badge--' + category" *ngFor="let category of categories">
+      <label [for]="category">{{ category | titlecase }}</label>
+      <input [id]="category" type="checkbox" [formControlName]="category">
+    </div>
+  </form>
+</form>

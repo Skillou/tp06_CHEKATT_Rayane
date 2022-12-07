@@ -95,21 +95,7 @@ $app->delete('/api/user/{id}', function (Request $request, Response $response, $
     return $response;
 });
 
-$app->delete('/api/catalogue/{id}', function ($request, $response, $args) {
-    // Delete book identified by $args['id']
-    // ...
 
-    return $response;
-});
-
-// PUT
-
-$app->put('/api/user/{id}', function ($request, $response, $args) {
-    // Update book identified by $args['id']
-    // ...
-
-    return $response;
-});
 
 ///////////////////////////
 // API Catalogue Produit //
@@ -133,6 +119,19 @@ $app->get('/api/catalogue/{id}', function (Request $request, Response $response,
     return $response;
 });
 
+$app->put('/api/catalogue/{id}', function ($request, $response, $args) {
+    // Update book identified by $args['id']
+    // ...
+
+    return $response;
+});
+
+$app->delete('/api/catalogue/{id}', function ($request, $response, $args) {
+    // Delete book identified by $args['id']
+    // ...
+
+    return $response;
+});
 
 $options = [
     "attribute" => "token",

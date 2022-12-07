@@ -111,7 +111,9 @@ $app->put('/api/user/{id}', function ($request, $response, $args) {
     return $response;
 });
 
-// GET Catalogue :
+///////////////////////////
+// API Catalogue Produit //
+//////////////////////////
 
 $filename = './assets/mock/produits.json';
 $data = file_get_contents($filename);
@@ -122,6 +124,15 @@ $app->get('/api/catalogue', function (Request $request, Response $response, $arg
     $response->getBody()->write(json_encode ($array));
     return $response;
 });
+
+$app->get('/api/catalogue/{id}', function (Request $request, Response $response, $args) {
+    global $array;
+    $id = $args ['id'];
+    $array = $array[$id - 1];
+    $response->getBody()->write(json_encode ($array));
+    return $response;
+});
+
 
 $options = [
     "attribute" => "token",

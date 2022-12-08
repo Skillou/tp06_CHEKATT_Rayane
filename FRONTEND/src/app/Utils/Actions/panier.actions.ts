@@ -11,7 +11,7 @@ export class ModifyProduct {
 
 export class RemoveProduct {
   static readonly type = "[Cart] RemoveProduct";
-  constructor(public produit: Number) {}
+  constructor(public produit: number) {}
 }
 
 export class RemoveAllProduct {

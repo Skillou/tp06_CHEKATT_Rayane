@@ -2,3 +2,23 @@
     background-color: orange;
     border-radius: 20px;
 }
+
+/* your CSS goes here*/
+body {
+  height: 1200px
+}
+
+nav {
+  background: #0f6f6f
+}
+
+.nav-link {
+  font-size: 1.2em;
+  /*color: #000000 !important;*/
+  font-weight: 500
+}
+
+.active .nav-link {
+  border-bottom: 1px solid #00ffc8;
+  color: #000000 !important
+}

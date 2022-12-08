@@ -18,8 +18,8 @@
 
 <div class="container-fluid mt-3">
     <div class="row">
-      <div class="col-md-12" *ngFor="let produit of produits$ | async; index as i">
-        <ng-container *ngIf="produit.produit as produitPanier">
+      <div class="col-md-12" *ngFor="let produit of produits$ | async;">
+        <ng-container *ngIf="produit.produit as produitPanier ">
           <div class="card" style="width: 20rem;">
             <img [src]='produitPanier.image' class="rounded center-block" [alt]='produitPanier.image'>
           <div>
@@ -33,7 +33,7 @@
                 <br>
                 <strong> Quantité :</strong> {{produit.quantity}}
               </h6>
-              <button class="btn btn-danger center-block" (click)="removeProduct(i)">Retirer du panier</button>
+              <button class="btn btn-danger center-block" (click)="removeProduct(produit.produit.id)">Retirer du panier</button>
             </div>
           </div>
         </div>

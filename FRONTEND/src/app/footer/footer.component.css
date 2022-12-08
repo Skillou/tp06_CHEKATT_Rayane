@@ -1,7 +1,4 @@
 footer {
   justify-content: center;
-  padding: 5px;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
+  background-color: #f1f1f1;
 }

@@ -10,14 +10,14 @@ import { CartProduit, CartStateModel } from '../Utils/States/panier.states.model
 })
 export class PanierComponent implements OnInit {
 
-  protected readonly produits$ = this.store.select((state: { cart: CartStateModel }) => state.cart.produits); 
-  
+  protected readonly produits$ = this.store.select((state: { cart: CartStateModel }) => state.cart.produits);
+
   constructor(private readonly store: Store) { }
 
   ngOnInit(): void {
   }
 
-  public removeProduct(productId: Number) {
+  public removeProduct(productId: number) {
     this.store.dispatch(new RemoveProduct(productId));
   }
 
@@ -28,5 +28,4 @@ export class PanierComponent implements OnInit {
   emptyCart() {
     this.store.dispatch(new EmptyCart());
   }
-
 }

@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Accueil</h1>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="card py-4 px-4">
+          <div class="text-center">
+            <img src="https://img.icons8.com/cotton/512/login-rounded-right--v2.png" width="60">
+          </div>
+          <div class="text-center mt-3">
+            <span class="info-text">Connexion</span>
+          </div>
+          <div class="position-relative mt-3 form-input">
+            <label for="login">Login</label>
+            <input type="text" class="form-control" id="login" formControlName="login" placeholder="Skillou">
+          </div>
+          <div class="position-relative mt-3 form-input">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="••••">
+          </div>
+
+          <div class=" mt-5 d-flex justify-content-between align-items-center">
+            <span>Connexion ou Inscription</span>
+            <button type="submit" class="btn btn-success go-button" [disabled]="!loginForm.valid"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -116,27 +116,27 @@
               </div>
             </div>
           </div>
-          <div class=" d-flex flex-column text-center px-5 mt-3 mb-3">
-
-            <p style="white-space: nowrap;">
-              <small class="agree-text">En vous inscrivant, vous acceptez les </small>
-              <a href="#" class="terms">Conditions d'utilisation</a>
-              <small class="agree-text">et la </small>
-              <a href="#" class="terms">Politique de confidentialité</a>
-              <small class="agree-text">, notamment</small>
-              <a href="#" class="terms">l'Utilisation des cookies.</a>
-            </p>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class=" d-flex flex-column text-center px-5 mt-3 mb-3">
+                  <p style="white-space: nowrap;">
+                    <small class="agree-text">En vous inscrivant, vous acceptez les </small>
+                    <a class="terms">Conditions d'utilisation</a>
+                    <small class="agree-text">et la </small>
+                    <a class="terms">Politique de confidentialité</a>
+                    <small class="agree-text">, notamment</small>
+                    <a class="terms">l'Utilisation des cookies.</a>
+                  </p>
+                </div>
+                <button class="btn btn-success btn-block confirm-button" type="submit" [disabled]="!clientForm.valid">
+                  Soumettre
+                </button>
+              </div>
+            </div>
           </div>
-          <button class="btn btn-success btn-block confirm-button" type="submit" [disabled]="!clientForm.valid">
-            Soumettre
-          </button>
         </div>
       </div>
     </div>
-
-
   </form>
-
-
-
-
+</div>

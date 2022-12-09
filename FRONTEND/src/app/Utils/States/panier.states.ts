@@ -26,11 +26,14 @@ export class CartState {
         : [...state.produits, { produit: action.produit, quantity: 1 }]
     });
   }
+
+  // à modifier car ne retire pas le quantité 0
   @Action(RemoveProduct)
   removeProduct(ctx: StateContext<CartStateModel>, { produit: productId }: RemoveProduct): void {
     const state = ctx.getState();
+    const productToRemove = state.produits.find(({ produit: { id } }) => id === productId);
     ctx.setState({
-      produits: state.produits.find(({ produit: { id } }) => id === productId)
+      produits: productToRemove?.quantity
         ? state.produits.map(({ produit, quantity }) => ({ produit, quantity: quantity - (produit.id === productId ? 1 : 0) }))
         : state.produits.filter(({produit: { id } }) => id !== productId)
     });

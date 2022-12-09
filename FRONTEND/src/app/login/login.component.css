@@ -1,0 +1,42 @@
+body{
+  background-color:#040539;
+}
+
+.card{
+  width:450px;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  background: #efefef;
+}
+
+.form-input input{
+  height:45px;
+  padding-right:35px;
+  border:2px solid #eee;
+  transition:all 0.5s;
+}
+
+.form-input input:focus{
+  box-shadow:none;
+  border:2px solid #000;
+}
+
+.info-text{
+  font-size:14px;
+}
+
+.go-button{
+  border:none;
+  height:50px;
+  width:50px;
+  font-size:29px;
+  color:#fff;
+  background-color:#651FFF;
+  border-radius:50%;
+  transition:all 0.5s;
+}
+
+.go-button:hover{
+  background-color:#6200EA;
+}

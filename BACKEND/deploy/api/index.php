@@ -11,15 +11,20 @@ if ($method == "OPTIONS") {
     header("HTTP/1.1 200 OK");
     die();
 }
+
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 const JWT_SECRET = "Skillou67JwtSecret";
-// const JWT_SECRET = "makey1234567";
 
 $app = AppFactory::create();
 
@@ -105,10 +110,22 @@ $filename = './assets/mock/produits.json';
 $data = file_get_contents($filename);
 $array = json_decode($data);
 
-$app->get('/api/catalogue', function (Request $request, Response $response, $args) {
-    global $array;
-    $response->getBody()->write(json_encode ($array));
-    return $response;
+// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//   // Récupérer tous les enregistrements
+//   $repository = $entityManager->getRepository(Product::class);
+//   $products = $repository->findAll();
+//   echo json_encode($products);
+// }
+
+// $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
+//     global $array;
+//     $response->getBody()->write(json_encode ($array));
+//     return $response;
+// });
+
+$app->get('/api/catalogue', function (Request $request, Response $response) use ($entityManager) {
+    $products = $entityManager->getRepository('Product')->findAll();
+    return $response->withJson($products);
 });
 
 $app->get('/api/catalogue/{id}', function (Request $request, Response $response, $args) {
@@ -116,6 +133,41 @@ $app->get('/api/catalogue/{id}', function (Request $request, Response $response,
     $id = $args ['id'];
     $array = $array[$id - 1];
     $response->getBody()->write(json_encode ($array));
+    return $response;
+});
+
+$app->post('/api/catalogue/add', function (Request $request, Response $response, $args) {
+    // Read the JSON file into a PHP object
+    global $array;
+
+    // Read the JSON file into a string
+    $json = json_encode($array, true);
+
+    // Append a new item to the end of the string
+    $item = array(
+    'id' => 123,
+    'name' => 'Livre de fou',
+    'description' => 'Ceci est un livre',
+    'price' => 4.5,
+    'category' => "livre",
+    'image' => '',
+    'summary' => 'Livre description'
+    );
+
+    $testJson = substr($json, 0, -1).','.json_encode($item).']';
+
+    file_put_contents('./assets/mock/produits.json', $testJson, FILE_APPEND);
+
+    $response->getBody()->write($testJson);
+
+    // $response->getBody()->write(json_encode ($array));
+
+    // $json = substr($json, 0, -1).','.json_encode($item).']';
+
+    // file_put_contents('./assets/mock/produits.json', $json, FILE_APPEND);
+
+    // $response->getBody()->write(json_encode ($array));
+
     return $response;
 });
 

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "1",
+    "name": "One Piece - Tome 100",
+    "description": "Manga de Echiro Oda",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://www.glenat.com/sites/default/files/images/livres/couv/9782344049020-001-T.jpeg",
+    "summary": "Un manga est une bande dessinée japonaise"
+  },
+  {
+    "id": "2",
+    "name": "My Hero Academia - Tome 30",
+    "description": "Manga de Kōhei Horikoshi",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://m.media-amazon.com/images/I/61WznzqTMFS.jpg",
+    "summary": "Malgré tous les efforts des héros, les combats gagnent en intensité et les victimes sont de plus en plus nombreuses. Mais Izuku est bien décidé à ne pas perdre les êtres qui lui sont chers."
+  },
+  {
+    "id": "3",
+    "name": "One Piece - Tome 101",
+    "description": "Manga de Echiro Oda",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://www.glenat.com/sites/default/files/images/livres/couv/9782344052143-001-T.jpeg",
+    "summary": "Un manga est une bande dessinée japonaise"
+  },
+  {
+    "id": "4",
+    "name": "One Piece - Tome 102",
+    "description": "Manga de Echiro Oda",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://www.glenat.com/sites/default/files/images/livres/couv/9782344052150-001-T.jpeg",
+    "summary": "Un manga est une bande dessinée japonaise"
+  },
+  {
+    "id": "5",
+    "name": "One Piece - Tome 103",
+    "description": "Manga de Echiro Oda",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://www.glenat.com/sites/default/files/images/livres/couv/9782344052167-001-T.jpeg",
+    "summary": "Un manga est une bande dessinée japonaise"
+  },
+  {
+    "id": "6",
+    "name": "My Hero Academia - Tome 31",
+    "description": "Manga de Kōhei Horikoshi",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://m.media-amazon.com/images/I/61ah+eHWWxL.jpg",
+    "summary": "Malgré tous les efforts des héros, les combats gagnent en intensité et les victimes sont de plus en plus nombreuses. Mais Izuku est bien décidé à ne pas perdre les êtres qui lui sont chers."
+  },
+  {
+    "id": "7",
+    "name": "My Hero Academia - Tome 32",
+    "description": "Manga de Kōhei Horikoshi",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://m.media-amazon.com/images/I/71YMHa2wTCL.jpg",
+    "summary": "Malgré tous les efforts des héros, les combats gagnent en intensité et les victimes sont de plus en plus nombreuses. Mais Izuku est bien décidé à ne pas perdre les êtres qui lui sont chers."
+  },
+  {
+    "id": "8",
+    "name": "Black Clover - Tome 10",
+    "description": "Manga de Yuki Tabata",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://www.bdfugue.com/media/catalog/product/cache/1/image/400x/17f82f742ffe127f42dca9de82fb58b1/9/7/9782820331908_1_75.jpg",
+    "summary": "Asta est un jeune garçon déterminé qui vit avec son ami d’enfance, Yuno, dans un orphelinat du royaume de Clover. Depuis tout petit, Asta a pour ambition de devenir le magicien le plus puissant du royaume, \"l’Empereur-Mage\", ce qui a aussi inspiré Yuno à vouloir la même chose. Mais malheureusement, Asta est né sans aucun talent magique, alors que Yuno possède des prédispositions spectaculaires."
+  },
+  {
+    "id": "9",
+    "name": "Black Clover - Tome 31",
+    "description": "Manga de Yuki Tabata",
+    "price": 6.90,
+    "category": "manga",
+    "image": "https://static.fnac-static.com/multimedia/Images/FR/NR/b9/52/d9/14242489/1507-1/tsp20221028063100/Black-Clover.jpg",
+    "summary": "Asta est un jeune garçon déterminé qui vit avec son ami d’enfance, Yuno, dans un orphelinat du royaume de Clover. Depuis tout petit, Asta a pour ambition de devenir le magicien le plus puissant du royaume, \"l’Empereur-Mage\", ce qui a aussi inspiré Yuno à vouloir la même chose. Mais malheureusement, Asta est né sans aucun talent magique, alors que Yuno possède des prédispositions spectaculaires."
+  },
+  {
+    "id": "10",
+    "name": "Bleak - Volume 1",
+    "description": "Livre de Squeezie",
+    "price": 10,
+    "category": "livre",
+    "image": "https://m.media-amazon.com/images/I/71p6YSqSIHL.jpg",
+    "summary": "nspirées des vidéos thread horreur du youtubeur Squeezie, ces trois histoires vont repousser les limites de vos cauchemars. Une colonie de vacances qui ne se passe pas comme prévu, une fête foraine mystérieuse, un baby-sitting qui tourne mal..."
+  },
+  {
+    "id": "11",
+    "name": "Bleak - Volume 2",
+    "description": "Livre de Squeezie",
+    "price": 10,
+    "category": "livre",
+    "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1643835073i/60238479.jpg",
+    "summary": "nspirées des vidéos thread horreur du youtubeur Squeezie, ces trois histoires vont repousser les limites de vos cauchemars. Une colonie de vacances qui ne se passe pas comme prévu, une fête foraine mystérieuse, un baby-sitting qui tourne mal..."
+  },
+  {
+    "id": "12",
+    "name": "Fifa 23",
+    "description": "Fifa 2023 - Ea Sport",
+    "price": 45,
+    "category": "jeu",
+    "image": "https://m.media-amazon.com/images/I/81CmLe-x9mL._AC_SL1500_.jpg",
+    "summary": "Jeu de foot très proche de la réalité."
+  },
+  {
+    "id": "13",
+    "name": "Dragon Ball Z Budokai Tenkaichi 3",
+    "description": "Jeu playstation 3",
+    "price": 15,
+    "category": "jeu",
+    "image": "https://m.media-amazon.com/images/I/61fqewpzHHL._AC_.jpg",
+    "summary": "Dragon Ball Z Budokai Tenkaichi 3 est l'un des meilleurs jeu de l'histoire sur PS2"
+  },
+  {
+    "id": "14",
+    "name": "Fortnite",
+    "description": "Multiplateforme",
+    "price": 0,
+    "category": "jeu",
+    "image": "https://smartcdkeys.com/image/cachewebp/data/products/Fortnite-Founders/cover/Fortnite-Founders-pc-game-dvd-cover-cd-key-390x580.webp",
+    "summary": "ortnite Battle Royale est un jeu de battle royale « joueur contre joueur » avec un maximum de 100 joueurs, jouant seul, en équipe de deux, de trois ou à quatre. Les joueurs sont largués dans un Bus de Combat qui traverse la carte du jeu sans aucune arme."
+  }
+]

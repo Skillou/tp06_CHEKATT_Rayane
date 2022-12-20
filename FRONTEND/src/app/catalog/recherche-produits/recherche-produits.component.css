@@ -200,7 +200,7 @@ body {
   content: '';
   position: absolute;
   inset: -4px;
-  border: 2px solid;
+  border: 3px solid;
   border-radius: 34px;
   pointer-events: none;
 }

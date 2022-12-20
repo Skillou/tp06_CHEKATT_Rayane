@@ -9,6 +9,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\LockMode;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
+use Doctrine\Deprecations\Deprecation;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\QuoteStrategy;
@@ -774,6 +775,9 @@ class SqlWalker implements TreeWalker
 
                 $this->rsm->setDiscriminatorColumn($dqlAlias, $columnAlias);
                 $this->rsm->addMetaResult($dqlAlias, $columnAlias, $discrColumn['fieldName'], false, $discrColumn['type']);
+                if (! empty($discrColumn['enumType'])) {
+                    $this->rsm->addEnumResult($columnAlias, $discrColumn['enumType']);
+                }
             }
 
             // Add foreign key columns to SQL, if necessary
@@ -2207,12 +2211,29 @@ class SqlWalker implements TreeWalker
     /**
      * Walks down an InExpression AST node, thereby generating the appropriate SQL.
      *
+     * @deprecated Use {@see walkInListExpression()} or {@see walkInSubselectExpression()} instead.
+     *
      * @param AST\InExpression $inExpr
      *
      * @return string
      */
     public function walkInExpression($inExpr)
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/orm',
+            'https://github.com/doctrine/orm/pull/10267',
+            '%s() is deprecated, call walkInListExpression() or walkInSubselectExpression() instead.',
+            __METHOD__
+        );
+
+        if ($inExpr instanceof AST\InListExpression) {
+            return $this->walkInListExpression($inExpr);
+        }
+
+        if ($inExpr instanceof AST\InSubselectExpression) {
+            return $this->walkInSubselectExpression($inExpr);
+        }
+
         $sql = $this->walkArithmeticExpression($inExpr->expression) . ($inExpr->not ? ' NOT' : '') . ' IN (';
 
         $sql .= $inExpr->subselect
@@ -2222,6 +2243,28 @@ class SqlWalker implements TreeWalker
         $sql .= ')';
 
         return $sql;
+    }
+
+    /**
+     * Walks down an InExpression AST node, thereby generating the appropriate SQL.
+     */
+    public function walkInListExpression(AST\InListExpression $inExpr): string
+    {
+        return $this->walkArithmeticExpression($inExpr->expression)
+            . ($inExpr->not ? ' NOT' : '') . ' IN ('
+            . implode(', ', array_map([$this, 'walkInParameter'], $inExpr->literals))
+            . ')';
+    }
+
+    /**
+     * Walks down an InExpression AST node, thereby generating the appropriate SQL.
+     */
+    public function walkInSubselectExpression(AST\InSubselectExpression $inExpr): string
+    {
+        return $this->walkArithmeticExpression($inExpr->expression)
+            . ($inExpr->not ? ' NOT' : '') . ' IN ('
+            . $this->walkSubselect($inExpr->subselect)
+            . ')';
     }
 
     /**

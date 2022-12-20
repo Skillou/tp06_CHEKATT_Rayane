@@ -1,4 +1,79 @@
+# Upgrade to 2.14
+
+## Deprecated constants of `Doctrine\ORM\Internal\CommitOrderCalculator`
+
+The following public constants have been deprecated:
+
+* `CommitOrderCalculator::NOT_VISITED`
+* `CommitOrderCalculator::IN_PROGRESS`
+* `CommitOrderCalculator::VISITED`
+
+These constants were used for internal purposes. Relying on them is discouraged.
+
+## Deprecated `Doctrine\ORM\Query\AST\InExpression`
+
+The AST parser will create a `InListExpression` or a `InSubselectExpression` when
+encountering an `IN ()` DQL expression instead of a generic `InExpression`.
+
+As a consequence, `SqlWalker::walkInExpression()` has been deprecated in favor of
+`SqlWalker::walkInListExpression()` and `SqlWalker::walkInSubselectExpression()`.
+
+## Deprecated constructing a `CacheKey` without `$hash`
+
+The `Doctrine\ORM\Cache\CacheKey` class has an explicit constructor now with
+an optional parameter `$hash`. That parameter will become mandatory in 3.0.
+
+## Deprecated `AttributeDriver::$entityAnnotationClasses`
+
+If you need to change the behavior of `AttributeDriver::isTransient()`,
+override that method instead.
+
+## Deprecated incomplete schema updates
+
+Using `orm:schema-tool:update` without passing the `--complete` flag is
+deprecated. Use schema asset filtering if you need to preserve assets not
+managed by DBAL.
+
+Likewise, calling `SchemaTool::updateSchema()` or
+`SchemaTool::getUpdateSchemaSql()` with a second argument is deprecated.
+
+## Deprecated annotation mapping driver.
+
+Please switch to one of the other mapping drivers. Native attributes which PHP
+supports since version 8.0 are probably your best option.
+
+As a consequence, the following methods are deprecated:
+- `ORMSetup::createAnnotationMetadataConfiguration`
+- `ORMSetup::createDefaultAnnotationDriver`
+
+The marker interface `Doctrine\ORM\Mapping\Annotation` is deprecated as well.
+All annotation/attribute classes implement
+`Doctrine\ORM\Mapping\MappingAttribute` now.
+
+## Deprecated `Doctrine\ORM\Proxy\Proxy` interface.
+
+Use `Doctrine\Persistence\Proxy` instead to check whether proxies are initialized.
+
+## Deprecated `Doctrine\ORM\Event\LifecycleEventArgs` class.
+
+It will be removed in 3.0. Use one of the dedicated event classes instead:
+
+* `Doctrine\ORM\Event\PrePersistEventArgs`
+* `Doctrine\ORM\Event\PreUpdateEventArgs`
+* `Doctrine\ORM\Event\PreRemoveEventArgs`
+* `Doctrine\ORM\Event\PostPersistEventArgs`
+* `Doctrine\ORM\Event\PostUpdateEventArgs`
+* `Doctrine\ORM\Event\PostRemoveEventArgs`
+* `Doctrine\ORM\Event\PostLoadEventArgs`
+
 # Upgrade to 2.13
+
+## Deprecated `EntityManager::create()`
+
+The constructor of `EntityManager` is now public and should be used instead of the `create()` method.
+However, the constructor expects a `Connection` while `create()` accepted an array with connection parameters.
+You can pass that array to DBAL's `Doctrine\DBAL\DriverManager::getConnection()` method to bootstrap the
+connection.
 
 ## Deprecated `QueryBuilder` methods and constants.
 
@@ -191,8 +266,8 @@ The following methods have been deprecated:
 
 - `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativeQueryMapping()`
 - `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativeQueryResultClassMapping()`
-- `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativQueryResultSetMapping()`
-- `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativQueryEntityResultMapping()`
+- `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativeQueryResultSetMapping()`
+- `Doctrine\ORM\Query\ResultSetMappingBuilder::addNamedNativeQueryEntityResultMapping()`
 
 ## Deprecated classes related to Doctrine 1 and reverse engineering
 
@@ -394,7 +469,7 @@ function foo(EntityManagerInterface $entityManager, callable $func) {
     if (method_exists($entityManager, 'wrapInTransaction')) {
         return $entityManager->wrapInTransaction($func);
     }
-    
+
     return $entityManager->transactional($func);
 }
 ```
@@ -460,7 +535,7 @@ implementation. To work around this:
 * As a quick workaround, you can lock the doctrine/cache dependency to work around this: `composer require doctrine/cache ^1.11`.
   Note that this is only recommended as a bandaid fix, as future versions of ORM will no longer work with doctrine/cache
   1.11.
-  
+
 ## Deprecated: doctrine/cache for metadata caching
 
 The `Doctrine\ORM\Configuration#setMetadataCacheImpl()` method is deprecated and should no longer be used. Please use
@@ -485,12 +560,12 @@ Note that `toIterable()` yields results of the query, unlike `iterate()` which y
 
 # Upgrade to 2.7
 
-## Added `Doctrine\ORM\AbstractQuery#enableResultCache()` and `Doctrine\ORM\AbstractQuery#disableResultCache()` methods	
+## Added `Doctrine\ORM\AbstractQuery#enableResultCache()` and `Doctrine\ORM\AbstractQuery#disableResultCache()` methods
 
 Method `Doctrine\ORM\AbstractQuery#useResultCache()` which could be used for both enabling and disabling the cache
-(depending on passed flag) was split into two.	
+(depending on passed flag) was split into two.
 
-## Minor BC BREAK: paginator output walkers aren't be called anymore on sub-queries for queries without max results  
+## Minor BC BREAK: paginator output walkers aren't be called anymore on sub-queries for queries without max results
 
 To optimize DB interaction, `Doctrine\ORM\Tools\Pagination\Paginator` no longer fetches identifiers to be able to
 perform the pagination with join collections when max results isn't set in the query.
@@ -509,7 +584,7 @@ In the last patch of the `v2.6.x` series, we fixed a bug that was not converting
 In order to not break BC we've introduced a way to enable the fixed behavior using a boolean constructor argument. This
 argument will be removed in 3.0 and the default behavior will be the fixed one.
 
-## Deprecated: `Doctrine\ORM\AbstractQuery#useResultCache()`	
+## Deprecated: `Doctrine\ORM\AbstractQuery#useResultCache()`
 
 Method `Doctrine\ORM\AbstractQuery#useResultCache()` is deprecated because it is split into `enableResultCache()`
 and `disableResultCache()`. It will be removed in 3.0.
@@ -539,7 +614,7 @@ These related classes have been deprecated:
 
  * `Doctrine\ORM\Proxy\ProxyFactory`
  * `Doctrine\ORM\Proxy\Autoloader` - we suggest using the composer autoloader instead
- 
+
 These methods have been deprecated:
 
  * `Doctrine\ORM\Configuration#getAutoGenerateProxyClasses()`
@@ -588,7 +663,7 @@ If your code relies on single entity flushing optimisations via
 
 Said API was affected by multiple data integrity bugs due to the fact
 that change tracking was being restricted upon a subset of the managed
-entities. The ORM cannot support committing subsets of the managed 
+entities. The ORM cannot support committing subsets of the managed
 entities while also guaranteeing data integrity, therefore this
 utility was removed.
 
@@ -689,8 +764,8 @@ either:
  - map those classes as `MappedSuperclass`
 
 ## Minor BC BREAK: ``EntityManagerInterface`` instead of ``EntityManager`` in type-hints
- 
-As of 2.5, classes requiring the ``EntityManager`` in any method signature will now require 
+
+As of 2.5, classes requiring the ``EntityManager`` in any method signature will now require
 an ``EntityManagerInterface`` instead.
 If you are extending any of the following classes, then you need to check following
 signatures:
@@ -783,7 +858,7 @@ the `Doctrine\ORM\Repository\DefaultRepositoryFactory`.
 When executing DQL queries with new object expressions, instead of returning DTOs numerically indexes, it will now respect user provided aliases. Consider the following query:
 
     SELECT new UserDTO(u.id,u.name) as user,new AddressDTO(a.street,a.postalCode) as address, a.id as addressId FROM User u INNER JOIN u.addresses a WITH a.isPrimary = true
-    
+
 Previously, your result would be similar to this:
 
     array(

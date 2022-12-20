@@ -62,6 +62,11 @@ class AnnotationDriver extends CompatibilityAnnotationDriver
      */
     public function __construct($reader, $paths = null)
     {
+        Deprecation::trigger(
+            'doctrine/orm',
+            'https://github.com/doctrine/orm/issues/10098',
+            'The annotation mapping driver is deprecated and will be removed in Doctrine ORM 3.0, please migrate to the attribute or XML driver.'
+        );
         $this->reader = $reader;
 
         $this->addPaths((array) $paths);
@@ -314,6 +319,7 @@ class AnnotationDriver extends CompatibilityAnnotationDriver
                             'type'             => $discrColumnAnnot->type ?: 'string',
                             'length'           => $discrColumnAnnot->length ?? 255,
                             'columnDefinition' => $discrColumnAnnot->columnDefinition,
+                            'enumType'         => $discrColumnAnnot->enumType,
                         ]
                     );
                 } else {
@@ -541,8 +547,9 @@ class AnnotationDriver extends CompatibilityAnnotationDriver
     }
 
     /**
-     * @param mixed[] $joinColumns
-     * @psalm-param array<string, mixed> $mapping
+     * @param mixed[]              $joinColumns
+     * @param class-string         $className
+     * @param array<string, mixed> $mapping
      */
     private function loadRelationShipMapping(
         ReflectionProperty $property,
@@ -654,6 +661,8 @@ class AnnotationDriver extends CompatibilityAnnotationDriver
 
     /**
      * Attempts to resolve the fetch mode.
+     *
+     * @param class-string $className
      *
      * @psalm-return ClassMetadata::FETCH_* The fetch mode as defined in ClassMetadata.
      *
